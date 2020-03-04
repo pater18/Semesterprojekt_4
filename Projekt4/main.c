@@ -2,61 +2,66 @@
 * University of Southern Denmark
 * Embedded Programming (EMP)
 *
-* MODULENAME.: emp.c
+* MODULENAME.: main.c
 *
 * PROJECT....: EMP
 *
-* DESCRIPTION: See module specification file (.h-file).
+* DESCRIPTION: Assignment 2, main module. No main.h file.
 *
 * Change Log:
-*****************************************************************************/
+*****************************************************************************
 * Date    Id    Change
 * YYMMDD
 * --------------------
-* 050128  KA    Module created.
+* 150215  MoH   Module created.
 *
 *****************************************************************************/
 
 /***************************** Include files *******************************/
+#include <stdint.h>
+#include "tm4c123gh6pm.h"
 #include "emp_type.h"
+#include "swtimers.h"
+#include "systick.h"
+#include "gpio.h"
+#include "events.h"
+#include "tmodel.h"
+#include "messages.h"
+#include "spi.h"
+
 /*****************************    Defines    *******************************/
 
 /*****************************   Constants   *******************************/
 
 /*****************************   Variables   *******************************/
-
-INT8U    dummy1;
-INT16S   dummy2;
+extern volatile INT16S ticks;
+INT16S alive_timer = MILLISEC(500); // alive timer for status led
 
 /*****************************   Functions   *******************************/
-
-void test1(void)
+int main(void)
 /*****************************************************************************
 *   Input    :
 *   Output   :
-*   Function :
+*   Function : The super loop.
 ******************************************************************************/
 {
-  dummy1++;
-}
+  disable_global_int();
+  init_systick();
+  init_gpio();
+  init_swtimers();
+  init_spi();
+  enable_global_int();
 
-extern void test2(void)
-/*****************************************************************************
-*   Function : See module specification (.h-file).
-*****************************************************************************/
-{
-  dummy2++;
+  // Loop forever.
+  while(1)
+  {
+
+      for (int i = 0; i < 1000; i++)
+      {
+          //nothing 
+      }
+
+  }
 }
 
 /****************************** End Of Module *******************************/
-
-
-
-
-
-
-
-
-
-
-

@@ -4,13 +4,18 @@
 
 SHELL = cmd.exe
 
-CG_TOOL_ROOT := C:/ti/ccs930/ccs/tools/compiler/gcc-arm-none-eabi-7-2017-q4-major-win32
+CG_TOOL_ROOT := C:/ti/ccsv8/tools/compiler/gcc-arm-none-eabi-7-2017-q4-major-win32
 
 GEN_OPTS__FLAG := 
 GEN_CMDS__FLAG := 
 
 ORDERED_OBJS += \
+"./button.o" \
+"./gpio.o" \
 "./main.o" \
+"./messages.o" \
+"./spi.o" \
+"./swtimers.o" \
 "./systick.o" \
 "./tm4c123gh6pm_startup_ccs_gcc.o" \
 -Wl,-T"../tm4c123gh6pm.lds" \
@@ -121,42 +126,42 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXE_OUTPUTS += \
-Projekt4.out \
+Semesterprojekt_4.out \
 
 EXE_OUTPUTS__QUOTED += \
-"Projekt4.out" \
+"Semesterprojekt_4.out" \
 
 BIN_OUTPUTS += \
-Projekt4.hex \
+Semesterprojekt_4.hex \
 
 BIN_OUTPUTS__QUOTED += \
-"Projekt4.hex" \
+"Semesterprojekt_4.hex" \
 
 
 # All Target
 all: $(OBJS) $(LDS_SRCS) $(GEN_CMDS)
-	@$(MAKE) --no-print-directory -Onone "Projekt4.out"
+	@$(MAKE) --no-print-directory -Onone "Semesterprojekt_4.out"
 
 # Tool invocations
-Projekt4.out: $(OBJS) $(LDS_SRCS) $(GEN_CMDS)
+Semesterprojekt_4.out: $(OBJS) $(LDS_SRCS) $(GEN_CMDS)
 	@echo 'Building target: "$@"'
 	@echo 'Invoking: GNU Linker'
-	"C:/ti/ccs930/ccs/tools/compiler/gcc-arm-none-eabi-7-2017-q4-major-win32/bin/arm-none-eabi-gcc-7.2.1.exe" -DPART_TM4C123GH6PM -Og -ffunction-sections -fdata-sections -g -gdwarf-3 -gstrict-dwarf -Wall -specs="nosys.specs" -march=armv7e-m -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wl,-Map,"Projekt4.map" -o"Projekt4.out" $(ORDERED_OBJS)
+	"C:/ti/ccsv8/tools/compiler/gcc-arm-none-eabi-7-2017-q4-major-win32/bin/arm-none-eabi-gcc.exe" -DPART_TM4C123GH6PM -Og -ffunction-sections -fdata-sections -g -gdwarf-3 -gstrict-dwarf -Wall -specs="nosys.specs" -march=armv7e-m -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wl,-Map,"Semesterprojekt_4.map" -o"Semesterprojekt_4.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: "$@"'
 	@echo ' '
 
-Projekt4.hex: $(EXE_OUTPUTS)
+Semesterprojekt_4.hex: $(EXE_OUTPUTS)
 	@echo 'Building files: $(strip $(EXE_OUTPUTS__QUOTED))'
 	@echo 'Invoking: GNU Objcopy Utility'
-	"C:/ti/ccs930/ccs/tools/compiler/gcc-arm-none-eabi-7-2017-q4-major-win32/bin/arm-none-eabi-objcopy.exe"  $(EXE_OUTPUTS__QUOTED) "Projekt4.hex"
+	"C:/ti/ccsv8/tools/compiler/gcc-arm-none-eabi-7-2017-q4-major-win32/bin/arm-none-eabi-objcopy.exe"  $(EXE_OUTPUTS__QUOTED) "Semesterprojekt_4.hex"
 	@echo 'Finished building: $(strip $(EXE_OUTPUTS__QUOTED))'
 	@echo ' '
 
 # Other Targets
 clean:
 	-$(RM) $(BIN_OUTPUTS__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "main.o" "systick.o" "tm4c123gh6pm_startup_ccs_gcc.o" 
-	-$(RM) "main.d" "systick.d" "tm4c123gh6pm_startup_ccs_gcc.d" 
+	-$(RM) "button.o" "gpio.o" "main.o" "messages.o" "spi.o" "swtimers.o" "systick.o" "tm4c123gh6pm_startup_ccs_gcc.o" 
+	-$(RM) "button.d" "gpio.d" "main.d" "messages.d" "spi.d" "swtimers.d" "systick.d" "tm4c123gh6pm_startup_ccs_gcc.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

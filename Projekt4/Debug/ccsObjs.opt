@@ -1,1 +1,1 @@
-"./main.o" "./systick.o" "./tm4c123gh6pm_startup_ccs_gcc.o" -Wl,-T"../tm4c123gh6pm.lds" 
+"./button.o" "./gpio.o" "./main.o" "./messages.o" "./spi.o" "./swtimers.o" "./systick.o" "./tm4c123gh6pm_startup_ccs_gcc.o" -Wl,-T"../tm4c123gh6pm.lds" 
